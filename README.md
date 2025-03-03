@@ -36,7 +36,7 @@ It is suited for backend servers, virtual machines, containers, embeded systems.
 
 Ie doesn't rely on a UI, and once configured can be fully scripted and autmated.
 
-It only depends on base tools: a pass password-store, gnupg, git, aopenssh, aws.
+It only depends on base tools: password-store, gnupg, git, ssh, sshpass, aws.
 
 
 
@@ -46,7 +46,7 @@ It only depends on base tools: a pass password-store, gnupg, git, aopenssh, aws.
 
 # Installation
 
-Ensure you have installed the prerequisistes (git, tree, pass gnupg).
+Ensure you have installed the prerequisistes (git, tree, pass gnupg, sshpass).
 
 ## cygwin
 
@@ -55,6 +55,7 @@ apt-cyg install git
 apt-cyg install tree
 apt-cyg install pass
 apt-cyg install gnupg
+apt-cyg install sshpass
 ```
 
 ## ubuntu (22 LTS jammay)
@@ -64,6 +65,7 @@ apt-get -y install git
 apt-get -y install tree
 apt-get -y install pass
 apt-get -y install gnupg
+apt-get -y install sshpass
 ```
 
 ## redhat (AWS Linux 2022)
@@ -73,6 +75,7 @@ yum install git
 yum install tree
 yum install pass
 yum install gnupg
+yum install sshpass
 ```
 
 
