@@ -26,17 +26,17 @@
 
 Aegis-Vault and Aegis-Agent are an agnostic POSIX secrets-vault and secure-agent.
 
-Aegis is a secure secrets vault aka key-store, password=store or password manager.
+Aegis is a secure secrets vault aka key-store, password-store or password manager.
 
-While there are many UI vase password stores like KeePass KeepassX, KeePassXC, etc.
+While there are many UI-based password stores like KeePass KeepassX, KeePassXC, etc,
 
-Aedis is differenet in that it is based on a lightweight minimal GNU POSIX sheel.
+Aegis is different in that it is based on a lightweight minimal GNU POSIX shell.
 
-It is suited for backend servers, virtual machines, containers, embeded systems.
+It is suited for backend servers, virtual machines, containers, embedded systems.
 
 Ie doesn't rely on a UI, and once configured can be fully scripted and autmated.
 
-It only depends on base tools: password-store, gnupg, git, ssh, sshpass, aws.
+It only depends on base tools: ssh, git, tree, gnupg, pass, sshpass, aws-cli, etc.
 
 
 
@@ -126,7 +126,7 @@ This may be an internal private git repo an external private git repo.
 Though RSA 4096 passphrases are strong, best to avoid public repos.
 
 
-For an external git this is typically done in a browesr.
+For an external git this is typically done in a browser.
 
 Note the git server and the git ssh login string
 
@@ -164,7 +164,7 @@ Make sure the account is connected and you have an IAM user with API acecss.
 
 AWS API Access requires an IAM Acces Key token couplet (key id + secret key).
 
-Have an Administrator gener
+Have an AWS Admin provide your Acces Key
 
 This is usally in a .csv file
 
