@@ -282,7 +282,7 @@ _TODO_
 
       _ 2. store plain-text ssh passphrase in password-store vault._
   
-          _keep passphrase-proctected ssh private key (~/.ssh/id_rsa)_
+          _keep passphrase-protected ssh private key (~/.ssh/id_rsa)_
          
       _ 3. store both ssh passphrase and private key in vault._
 
@@ -554,5 +554,4 @@ ssh-key hardening
 ═══════════════════════════════════════════════════════════════════════
 # (c) Francis Korning 2025.
 ═══════════════════════════════════════════════════════════════════════
-
 
