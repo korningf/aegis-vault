@@ -268,8 +268,9 @@ generate your SSH key-pair
     ssh-keygen -o -t rsa -f id_rsa -C "$gpg_id"
 
     ssh_priv_key=`tail -n +2 ~/.ssh/id_rsa | head -n -1 | tr -d '\n'` 
-    ssh_publ_key=`tail -n +2 ~/.ssh/id_rsa.pub | head -n -1 | tr -d '\n'` 
+    ssh_publ_key=`head -1 id_rsa.pub | tr -d '\n'` 
 
+    pass insert ssh/id_rsa ${ssh_priv_key}
     pass insert ssh/id_rsa.pub ${ssh_publ_key}
 
 
