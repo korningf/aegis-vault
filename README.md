@@ -254,11 +254,32 @@ At minimum we will integrate with SSH for initialization  and git access.
 We will probably want to use SSH-Agents, and we will address this later.
 
 
-Note AWS Ec2 machines have authorized_key public key and not a key-pair.
+
+Note AWS EC2 machines have authorized_key public key and not a key-pair.
 
 That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
 
 which we can then add to our Git repo (without screwing up AWS EC2 shell)
+
+
+
+_TODO_ 
+
+	_how to deal with passphrase protected ssh private keys?_
+
+ 	_3 options:_
+  
+  	_ 1. store plain-text ssh private key in password-store vault._
+
+   	    _and then delete plain-text ssh private key (~/.ssh/id_rsa)_ 
+
+  	_ 2. store plain-text ssh passphrase in password-store vault._
+  
+	    _keep passphrase-proctected ssh private key (~/.ssh/id_rsa)_
+     
+     	_ 3. store both ssh passphrase and private key in vault._
+
+   	    _overkill, not sure this adds anything except complexity_ 
 
 
 Open-SSH private key default passphrase-protectedion uses ASES 128-bit.
@@ -269,10 +290,6 @@ We will want to store our ssh private-key in the password-vault instead,
 
 as that will use RSA 4096 and will use our common pass vault interface.
 
-
-_TODO_ 
-
-	_how to deal with exsiting passpharse protected ssh private keys?_
 
 
 generate your SSH key-pair
@@ -472,7 +489,15 @@ pull from the vault
   see https://git.zx2c4.com/password-store/
 
   see https://github.com/lukrop/pass-file
-  
+
+  see https://linux.die.net/man/1/sshpass
+
+  see https://www.redhat.com/en/blog/ssh-automation-sshpass
+
+  see https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
+
+  see https://thomasbroadley.com/blog/unlocking-ssh-keys-using-pass/
+
 
   see https://medium.com/@chasinglogic/the-definitive-guide-to-password-store-c337a8f023a1
 
