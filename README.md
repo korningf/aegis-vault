@@ -44,9 +44,7 @@ It only depends on base tools: password-store, gnupg, git, ssh, sshpass, aws.
 # Installation
 ───────────────────────────────────────────────────────────────────────
 
-# Installation
-
-Ensure you have installed the prerequisistes (git, tree, pass gnupg, sshpass).
+Ensure you have installed the prerequisistes (ssh, git, tree, gnupg, pass, sshpass).
 
 ## cygwin
 
