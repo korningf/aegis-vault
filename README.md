@@ -98,7 +98,7 @@ pass extensions
 
 * Id
 
-Everything will be tied to a primary email identity, so hoose it wisely.
+Everything will be tied to a primary email identity, so choose it wisely.
 
 The email should have a strong password and be protetected by MFA auth.
 
@@ -249,6 +249,18 @@ generate the password-store
 
 * SSH
 
+At minimum we will integrate with SSH for initialization  and git access.
+
+We will probably want to use SSH-Agents, and we will address this later.
+
+
+Note AWS Ec2 machines have authorized_key public key and not a key-pair.
+
+That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
+
+which we can then add to our Git repo (without screwing up AWS EC2 shell)
+
+
 Open-SSH private key default passphrase-protectedion uses ASES 128-bit.
 
 For SSH to work with pass we must use a plain-text OpenSSH private-key.
@@ -267,11 +279,31 @@ generate your SSH key-pair
 
     ssh-keygen -o -t rsa -f id_rsa -C "$gpg_id"
 
+authorize its public key
+
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    
+store the keys in the vault
+
+    aws_publ_key=`cat ~/.ssh/authorized_keys`
+    
     ssh_priv_key=`tail -n +2 ~/.ssh/id_rsa | head -n -1 | tr -d '\n'` 
     ssh_publ_key=`head -1 id_rsa.pub | tr -d '\n'` 
 
+_TODO_
+
+	_this won't work - figure out the io stream or pipe redirection to make it work_
+
+
+
+    pass insert ssh/aws_publ_key ${aws_publ_key}
+
     pass insert ssh/id_rsa ${ssh_priv_key}
     pass insert ssh/id_rsa.pub ${ssh_publ_key}
+
+remove the ssh private key
+
+    rm -f ~/id_rsa
 
 
 _TODO_ 
