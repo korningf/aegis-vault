@@ -264,7 +264,7 @@ which we can then add to our Git repo (without screwing up AWS EC2 shell)
 
 _TODO_ 
 
-    _do we use sshpass(1) and password-auth or do we need private_key only ?_
+    _can we use sshpass(1) and password-auth or do we use private_key only ?_
 
       _ 0. use sshpass(1) with password-auth and store pass in vault._
 
@@ -382,6 +382,8 @@ You should be on a new machine already holding the id_rsa.pub ssh pubkey.
 Run the ageis.sh script to do everything automagically.
 
 
+_TODO_
+
     aegis.sh
     
 
@@ -390,7 +392,7 @@ Run the ageis.sh script to do everything automagically.
 # Configuration
 ───────────────────────────────────────────────────────────────────────
 
-We hnow ave a working password vault, we next want to check it into git.
+We now have a working password vault, we next want to check it into git.
 
 this will allow us to track changes and load the vault in other systems.
 
@@ -402,9 +404,8 @@ this will allow us to track changes and load the vault in other systems.
     
 
 
-
 ───────────────────────────────────────────────────────────────────────
-# Cloud Infrastructure (AWS)
+## Cloud Infrastructure (AWS)
 ───────────────────────────────────────────────────────────────────────
 
 We're assuming here that the intent is to do Cloud Opps and Dev Ops.
@@ -414,32 +415,44 @@ We further assume that one has an IAM account and an API Access Key.
 That key should be the next secret in the Aegis-Vault secure-vault.
 
 
-
-
-───────────────────────────────────────────────────────────────────────
-# Cloud Formation (Terraform)
-───────────────────────────────────────────────────────────────────────
-
+_TODO_
 
 ───────────────────────────────────────────────────────────────────────
-# Cluster Orchestrator (Terraform)
+## Cloud Formation (Terraform)
 ───────────────────────────────────────────────────────────────────────
 
 
-───────────────────────────────────────────────────────────────────────
-# Container Provider (Docker)
-───────────────────────────────────────────────────────────────────────
-
-───────────────────────────────────────────────────────────────────────
-# Virtualizer Provisioner (Vagrant)
-───────────────────────────────────────────────────────────────────────
+_TODO_  Terraform, K-Ops
 
 
+───────────────────────────────────────────────────────────────────────
+## Cluster Orchestrator (Kubenetes)
+───────────────────────────────────────────────────────────────────────
+
+
+_TODO_  Kubernetes, Minikube
+
+
+───────────────────────────────────────────────────────────────────────
+## Container Provider (Docker)
+───────────────────────────────────────────────────────────────────────
+
+_TODO_  Docker, Composer
+
+
+───────────────────────────────────────────────────────────────────────
+## Virtualizer Provisioner (Vagrant)
+───────────────────────────────────────────────────────────────────────
+
+_TODO_  Vagrant, Bundler
 
 
 ───────────────────────────────────────────────────────────────────────
 # Operation
 ───────────────────────────────────────────────────────────────────────
+
+All other secrets, passwords, keys, credentials go in the password-store vault.
+
 
 
 generate a password (strong)
