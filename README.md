@@ -248,6 +248,7 @@ But this doesn't mean the rsa private key is present on the local machine.
 We want to configure ssh such that all rsa private keys live in the vault.
 
 .
+
 Note AWS EC2 machines have authorized_key public key and not a key-pair.
 
 That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
@@ -429,7 +430,7 @@ _TODO_  Terraform, K-Ops
 
 
 ───────────────────────────────────────────────────────────────────────
-## Cluster Orchestrator (Kubenetes)
+## Cluster Orchestrator (Kubernetes)
 ───────────────────────────────────────────────────────────────────────
 
 
@@ -460,7 +461,7 @@ All other secrets, passwords, keys, credentials go in the password-store vault.
 
 generate a password (strong)
 
-    # length is number of characters
+    # len is number of characters
     
     pass generate <path/name> len
 
@@ -478,7 +479,8 @@ ex
 
     pass insert aws/aws_iam_secret_access_key 
 
-add a secret (multi-line)
+
+add a secret (multi-line - interactive)
 
     # use [ctrl]+[d] to end input
     
@@ -493,6 +495,7 @@ ex
 push to the vault
 
     pass git push
+
 
 pull from the vault
 
