@@ -28,13 +28,13 @@ Aegis-Vault and Aegis-Agent are an agnostic POSIX secrets-vault and secure-agent
 
 Aegis is a secure secrets vault, aka key-store, password-store or password manager.
 
-While there are many UI-based password stores like KeePass KeepassX, KeePassXC, etc,
+While there are many UI-based password stores like KeePass KeepassX, KeePassXC..., 
 
-Aegis is different in that it is based on a lightweight, minimal GNU POSIX shell.
+Aegis is different in that it is based on a lightweight, minimal, GNU POSIX shell.
 
 It is suited for backend servers, virtual machines, containers, embedded systems.
 
-It does not rely on a UI, and once configured can be fully scripted and autmated.
+It does not rely on a UI, and once configured can be fully scripted and automated.
 
 It only depends on base tools: ssh, git, tree, gnupg, pass, sshpass, aws-cli, etc.
 
