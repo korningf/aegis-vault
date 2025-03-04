@@ -262,16 +262,18 @@ That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
 which we can then add to our Git repo (without screwing up AWS EC2 shell)
 
 
+_TODO_ 
+
+    _do we use sshpass(1) and password-auth or do we need private_key only ?_
+
+      _ 0. use sshpass(1) with password-auth and store pass in vault._
+
 
 _TODO_ 
 
     _how to deal with passphrase protected ssh private keys?_
 
-     _4 options:_
-
-      _ 0. use sssh with password-auth and sshpass and store pass in vault._
-
-           _TODO_ 
+     _3 options:_
       
       _ 1. store plain-text ssh private key in password-store vault._
 
@@ -402,7 +404,7 @@ this will allow us to track changes and load the vault in other systems.
 
 
 ───────────────────────────────────────────────────────────────────────
-# Cloud Infrastrcuture (AWS)
+# Cloud Infrastructure (AWS)
 ───────────────────────────────────────────────────────────────────────
 
 We're assuming here that the intent is to do Cloud Opps and Dev Ops.
@@ -500,8 +502,10 @@ pass file extension
   see https://github.com/lukrop/pass-file
 
 
-sshpass unix command
-  
+sshpass(1) unix command
+
+  _this sshpas(1) is a unix command - not the same as the sshpass(2) expect script _
+    
   see https://linux.die.net/man/1/sshpass
 
   see https://www.redhat.com/en/blog/ssh-automation-sshpass
@@ -509,9 +513,9 @@ sshpass unix command
   see https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
 
 
-sshpass expect script
+sshpass(2) expect script
   
-  _this sshpass is an expect scrtipt - not to be confused with the unix command_
+  _this sshpass(2) is an expect script - not the same as the sshpas(1) unix command_
   
   see https://thomasbroadley.com/blog/unlocking-ssh-keys-using-pass/
 
