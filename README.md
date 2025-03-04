@@ -26,15 +26,15 @@
 
 Aegis-Vault and Aegis-Agent are an agnostic POSIX secrets-vault and secure-agent.
 
-Aegis is a secure secrets vault aka key-store, password-store or password manager.
+Aegis is a secure secrets vault, aka key-store, password-store or password manager.
 
 While there are many UI-based password stores like KeePass KeepassX, KeePassXC, etc,
 
-Aegis is different in that it is based on a lightweight minimal GNU POSIX shell.
+Aegis is different in that it is based on a lightweight, minimal GNU POSIX shell.
 
 It is suited for backend servers, virtual machines, containers, embedded systems.
 
-Ie doesn't rely on a UI, and once configured can be fully scripted and autmated.
+It does not rely on a UI, and once configured can be fully scripted and autmated.
 
 It only depends on base tools: ssh, git, tree, gnupg, pass, sshpass, aws-cli, etc.
 
@@ -105,9 +105,9 @@ This id will govern your GPG keyring, git repo, and AWS IAM user account.
 
 * Initial Secrets
 
-Now this Id may or may not already have the necessary inital secrets.
+Now this Id may or may not already have inital secrets.
 
-Note if the Id already has the following:
+Note if the Id is already used for the following:
 
   - GnuPG keyring
   - SSH RSA Key pair
@@ -195,7 +195,7 @@ which is passphrase-protected via RSA 4096, and cannot be brute-forced.
   
 Select a primary email identity, ie the one linked to your git account.
 
-Create a master gpg keyring - this will be bound to  email identity.
+Create a master gpg keyring - this will be bound to your email identity.
 
     $ gpg --gen-key"
 
