@@ -380,7 +380,7 @@ You should be on a new machine already holding the id_rsa.pub ssh pubkey.
     git clone ssh://git@${git_server}:/${git_user}/${git_repo} .password-store
     
 
-Run the ageis.sh script to do everything automagically.
+Run the aegis.sh script to do everything automagically.
 
 
 _TODO_
