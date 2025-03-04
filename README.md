@@ -185,22 +185,14 @@ We want a set of secure steps that avoid storing secrets in the clear.
 
 Every secret, password, and private key should be in the keystore vault,
 
-which is passphrase-protected via RSA 4096, and cannot be brute force.
+which is passphrase-protected via RSA 4096, and cannot be brute-forced.
 
-(one hopes)
-
+(one hopes for a while at least)
 
 
   
 * GPG
   
-Now chances are we have an ssh key already if this is a virtual machine.
-
-This measn we also need ssh-agent in order to hop out to other systems.
-
-If we have ssh keys, we mmust move the private identity key into vault.
-
-
 Select a primary email identity, ie the one linked to your git account.
 
 Create a master gpg keyring - this will be bound to  email identity.
@@ -247,7 +239,15 @@ generate the password-store
 
 * SSH
 
-At minimum we will integrate with SSH for initialization  and git access.
+Now chances are we have an ssh key already if this is a virtual machine.
+
+But this doesn't mean the  private key is present on the local machine.
+
+We want to configure ssh such that all private keys live in the vault.
+
+
+
+At minimum we will need to integrate pass and ssh for git repo access.
 
 We will probably want to use SSH-Agents, and we will address this later.
 
@@ -258,6 +258,7 @@ Note AWS EC2 machines have authorized_key public key and not a key-pair.
 That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
 
 which we can then add to our Git repo (without screwing up AWS EC2 shell)
+
 
 
 _TODO_ 
