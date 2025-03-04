@@ -26,7 +26,7 @@
 
 Aegis-Vault and Aegis-Agent are an agnostic POSIX secrets-vault and secure-agent.
 
-Aeggis is a secure secrets vault aka key-store, password=store or password manager.
+Aegis is a secure secrets vault aka key-store, password=store or password manager.
 
 While there are many UI vase password stores like KeePass KeepassX, KeePassXC, etc.
 
@@ -244,7 +244,7 @@ generate the password-store
     mkdir -p .password-store
     git init .password-store
     
-    pass init .password-store $gpg_id
+    pass init .password-store ${gpg_id}
   
 
 * SSH
@@ -300,7 +300,7 @@ as that will use RSA 4096 and will use our common pass vault interface.
 
 generate your SSH key-pair
 
-    ssh-keygen -o -t rsa -f id_rsa -C "$gpg_id"
+    ssh-keygen -o -t rsa -f id_rsa -C "${gpg_id}"
 
 authorize its public key
 
@@ -338,7 +338,7 @@ _TODO_
 
 * Git
 
-configure yyour git server account and your git vault repo.
+configure your git server account and your git vault repo.
 
 for an external git this is typically done in a browesr.
 
@@ -352,7 +352,7 @@ add your git ssh key into the vault
 
     pass git init
 
-    pass git remote add origin ssh://git@$git_server:/$git_user/$git_repo
+    pass git remote add origin ssh://git@${git_server}:/${git_user}/${git_repo}
 
 
 
@@ -376,7 +376,7 @@ You should be on a new machine already holding the id_rsa.pub ssh pubkey.
 
     cd ~
     
-    git clone ssh://git@$git_server:/$git_user/$git_rep .password-store
+    git clone ssh://git@${git_server}:/${git_user}/${git_repo} .password-store
     
 
 Run the ageis.sh script to do everything automagically.
@@ -396,7 +396,7 @@ this will allow us to track changes and load the vault in other systems.
 
     pass git init
 
-    pass git remote add origin ssh://git@$git_server:/$git_user/$git_repo
+    pass git remote add origin ssh://git@${git_server}:/${git_user}/${git_repo}
 
     git pull
     
@@ -474,7 +474,7 @@ ex
     
     
 
-push to the vaukt
+push to the vault
 
     pass git push
 
