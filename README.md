@@ -5,9 +5,9 @@
 
 <code> 
 
-	#=============================================================================#
-	# Manufakture aegis-vault - posix secrets vault
-	#-----------------------------------------------------------------------------#
+    #=============================================================================#
+    # Manufakture aegis-vault - posix secrets vault
+    #-----------------------------------------------------------------------------#
 
                                   _____        __      __                        
       _____ _____    ____  __ ___/ ____\____  |  | ___/  |_ __ _________   ____  
@@ -17,12 +17,12 @@
           \/     \/     \/                  \/     \/                         \/ 
 
 
-	#-----------------------------------------------------------------------------#
-	# (c) Francis Korning 2025.
-	#=============================================================================#
- 	                                                                              
-</code>		
-	
+    #-----------------------------------------------------------------------------#
+    # (c) Francis Korning 2025.
+    #=============================================================================#
+                                                                                   
+</code>        
+    
 
 Aegis-Vault and Aegis-Agent are an agnostic POSIX secrets-vault and secure-agent.
 
@@ -265,21 +265,25 @@ which we can then add to our Git repo (without screwing up AWS EC2 shell)
 
 _TODO_ 
 
-	_how to deal with passphrase protected ssh private keys?_
+    _how to deal with passphrase protected ssh private keys?_
 
- 	_3 options:_
+     _4 options:_
+
+      _ 0. use sssh with password-auth and sshpass and store pass in vault._
+
+           _TODO_ 
+      
+      _ 1. store plain-text ssh private key in password-store vault._
+
+           _and then delete plain-text ssh private key (~/.ssh/id_rsa)_ 
+
+      _ 2. store plain-text ssh passphrase in password-store vault._
   
-  	_ 1. store plain-text ssh private key in password-store vault._
+          _keep passphrase-proctected ssh private key (~/.ssh/id_rsa)_
+         
+      _ 3. store both ssh passphrase and private key in vault._
 
-   	    _and then delete plain-text ssh private key (~/.ssh/id_rsa)_ 
-
-  	_ 2. store plain-text ssh passphrase in password-store vault._
-  
-	    _keep passphrase-proctected ssh private key (~/.ssh/id_rsa)_
-     
-     	_ 3. store both ssh passphrase and private key in vault._
-
-   	    _overkill, not sure this adds anything except complexity_ 
+           _overkill, not sure this adds anything except complexity_ 
 
 
 Open-SSH private key default passphrase-protectedion uses ASES 128-bit.
@@ -309,7 +313,7 @@ store the keys in the vault
 
 _TODO_
 
-	_this won't work - figure out the io stream or pipe redirection to make it work_
+    _this won't work - figure out the io stream or pipe redirection to make it work_
 
 
 
@@ -325,9 +329,9 @@ remove the ssh private key
 
 _TODO_ 
 
-	_use pass-file to store the ssh file with headers and footers_
+    _use pass-file to store the ssh file with headers and footers_
 
-	_modify the extension it to strip the headers and footers with an option_
+    _modify the extension it to strip the headers and footers with an option_
 
 
 * Git
@@ -480,31 +484,52 @@ pull from the vault
 
 
 ───────────────────────────────────────────────────────────────────────
-# Attribution
+# Appendix
 ───────────────────────────────────────────────────────────────────────
 
 
+pass password-store:
+  
   see https://www.passwordstore.org/
 
   see https://git.zx2c4.com/password-store/
 
+
+pass file extension
+
   see https://github.com/lukrop/pass-file
 
+
+sshpass unix command
+  
   see https://linux.die.net/man/1/sshpass
 
   see https://www.redhat.com/en/blog/ssh-automation-sshpass
 
   see https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
 
+
+sshpass expect script
+  
+  _this sshpass is an expect scrtipt - not to be confused with the unix command_
+  
   see https://thomasbroadley.com/blog/unlocking-ssh-keys-using-pass/
 
 
+pass with gpg git
+
   see https://medium.com/@chasinglogic/the-definitive-guide-to-password-store-c337a8f023a1
 
-  see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
+
+pass with ssh agent
 
   see https://medium.com/50ld/aws-setup-ssh-agent-forwarding-to-ec2-instances-on-windows-57b94d22c5f4
  
+
+ssh-key hardening
+
+  see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
+
  
 ═══════════════════════════════════════════════════════════════════════
 # (c) Francis Korning 2025.
