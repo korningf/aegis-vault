@@ -56,7 +56,7 @@ apt-cyg install gnupg
 apt-cyg install sshpass
 ```
 
-## ubuntu (22 LTS jammay)
+## ubuntu (22 LTS jammy)
 
 ```
 apt-get -y install git
@@ -123,8 +123,10 @@ The passphrase-protected secure vault will be checked-in a git repo.
 
 This may be an internal private git repo an external private git repo.
 
-Though RSA 4096 passphrases are strong, best to avoid public repos.
+Though RSA 4096 passphrases are very strong, best to avoid public repos.
 
+
+.
 
 For an external git this is typically done in a browser.
 
@@ -213,7 +215,7 @@ If this is the very first time you install and initalizae aegis,
 
 or none of the initial secrets are already present on the machine,
 
-or you do not have an ssg key, you have not yet configured git ssh,
+or you do not have a gpg keyring, an ssh key, or a git ssh config,
 
 it is best to do this manually.
 
@@ -241,9 +243,9 @@ generate the password-store
 
 Now chances are we have an ssh key already if this is a virtual machine.
 
-But this doesn't mean the  private key is present on the local machine.
+But this doesn't mean the rsa private key is present on the local machine.
 
-We want to configure ssh such that all private keys live in the vault.
+We want to configure ssh such that all rsa private keys live in the vault.
 
 .
 Note AWS EC2 machines have authorized_key public key and not a key-pair.
