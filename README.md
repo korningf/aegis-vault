@@ -135,7 +135,7 @@ Note the git server and the git ssh login string
 
     git_server=github.com
     git_user=you@email.com
-    git_ssh=git@$git_server}
+    git_ssh=git@${git_server}
 
 
     git_ssh=git@github.com
@@ -151,7 +151,7 @@ Note the Git repository url and relative repo path
     git_repo_url=git@${git_server}/${git_user}/${git_repo}.git
 
 
-    git_repo_url=git@$github.com/fkorning/aegis-vault.git
+    git_repo_url=git@github.com/korningf/aegis-vault.git
   
 * AWS
 
@@ -249,9 +249,36 @@ generate the password-store
 
 * SSH
 
+Open-SSH private key default passphrase-protectedion uses ASES 128-bit.
+
+For SSH to work with pass we must use a plain-text OpenSSH private-key.
+
+We will want to store our ssh private-key in the password-vault instead,
+
+as that will use RSA 4096 and will use our common pass vault interface.
+
+
+_TODO_ 
+
+	_how to deal with exsiting passpharse protected ssh private keys?_
+
+
 generate your SSH key-pair
 
     ssh-keygen -o -t rsa -f id_rsa -C "$gpg_id"
+
+    ssh_priv_key=`tail -n +2 ~/.ssh/id_rsa | head -n -1 | tr -d '\n'` 
+    ssh_publ_key=`tail -n +2 ~/.ssh/id_rsa.pub | head -n -1 | tr -d '\n'` 
+
+    pass insert ssh/id_rsa.pub ${ssh_publ_key}
+
+
+_TODO_ 
+
+	_use pass-file to store the ssh file with headers and footers_
+
+	_modify the extension it to strip the headers and footers with an option_
+
 
 * Git
 
