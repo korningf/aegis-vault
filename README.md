@@ -245,19 +245,19 @@ But this doesn't mean the  private key is present on the local machine.
 
 We want to configure ssh such that all private keys live in the vault.
 
+.
+Note AWS EC2 machines have authorized_key public key and not a key-pair.
 
+That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
+
+which we can then add to our Git repo (without screwing up AWS access)
+
+.
 
 At minimum we will need to integrate pass and ssh for git repo access.
 
 We will probably want to use SSH-Agents, and we will address this later.
 
-
-
-Note AWS EC2 machines have authorized_key public key and not a key-pair.
-
-That is, we can generate a full additional key-pair (id_rsa, id_rsa.pub),
-
-which we can then add to our Git repo (without screwing up AWS EC2 shell)
 
 
 
@@ -287,7 +287,7 @@ _TODO_
            _overkill, not sure this adds anything except complexity_ 
 
 
-Open-SSH private key default passphrase-protectedion uses ASES 128-bit.
+Recall the OpenSSH private key passphrase-protection uses AES 128-bit.
 
 For SSH to work with pass we must use a plain-text OpenSSH private-key.
 
@@ -316,7 +316,9 @@ _TODO_
 
     _this won't work - figure out the io stream or pipe redirection to make it work_
 
+    _use pass-file to store the ssh file with headers and footers_
 
+    
 
     pass insert ssh/aws_publ_key ${aws_publ_key}
 
