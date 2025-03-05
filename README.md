@@ -98,7 +98,7 @@ pass extensions
 
 Everything will be tied to a primary email identity, so choose it wisely.
 
-The email should have a strong password and be protetected by MFA auth.
+This email should have a strong password and be protected by 2MFA auth.
 
 This id will govern your GPG keyring, git repo, and AWS IAM user account.
 
@@ -119,18 +119,18 @@ Note if the Id is already used for the following:
 
 * Git
 
-The passphrase-protected secure vault will be checked-in a git repo. 
+The passphrase-protected secure vault should be checked-in a git repo. 
 
-This may be an internal private git repo an external private git repo.
+It may be an internal private git repo or an external private git repo.
 
 Though RSA 4096 passphrases are very strong, best to avoid public repos.
 
 
 .
 
-For an external git this is typically done in a browser.
+If you haven't done so, create a git account on a git server.
 
-Note the git server and the git ssh login string
+Note the git server and the git login parameters
 
 
     git_server=github.com
@@ -141,8 +141,8 @@ Note the git server and the git ssh login string
     git_ssh=git@github.com
     
 
-If you haven't done so already, create the Git account and the repo.
 
+If you haven't done so, create your repository for the aegis-vault.
 
 Note the Git repository url and relative repo path
 
@@ -152,6 +152,7 @@ Note the Git repository url and relative repo path
 
 
     git_repo_url=git@github.com/korningf/aegis-vault.git
+
   
 * AWS
 
@@ -164,9 +165,9 @@ Make sure the account is connected and you have an IAM user with API acecss.
     aws_user_pass=*****************************
 
 
-AWS API Access requires an IAM Acces Key token couplet (key id + secret key).
+The AWS API uses an IAM Secret Acces Key token couplet (key id + secret key).
 
-Have an AWS Admin provide your Acces Key
+Have an AWS Admin provide your Access Key
 
 This is usally in a .csv file
 
@@ -266,29 +267,38 @@ We will probably want to use SSH-Agents, and we will address this later.
 
 _TODO_ 
 
-    _can we use sshpass(1) and password-auth or do we use private_key only ?_
+    _Questions_
+
+    _How do we plan to use this? password auth or keypair auth ?_
+
+    _can we use sshpass(1) and password-auth or do we use keypair only ?_
 
       _ 0. use sshpass(1) with password-auth and store pass in vault._
 
 
 _TODO_ 
 
-    _how to deal with passphrase protected ssh private keys?_
+    _How to deal with passphrase protected ssh private keys?_
 
      _3 options:_
       
-      _ 1. store plain-text ssh private key in password-store vault._
+      _ 1. store the ssh plain-text private key in the password-store vault._
 
-           _and then delete plain-text ssh private key (~/.ssh/id_rsa)_ 
+           _delete any ssh plain-text private keys in your .ssh home (~/.ssh/id_rsa)_ 
 
-      _ 2. store plain-text ssh passphrase in password-store vault._
+      _ 2. store the ssh passphrase in the password-store vault._
   
-          _keep passphrase-protected ssh private key (~/.ssh/id_rsa)_
+          _keep passphrase-protected private keys in your .ssh home (~/.ssh/id_rsa)_
          
       _ 3. store both ssh passphrase and private key in vault._
 
            _overkill, not sure this adds anything except complexity_ 
 
+_TODO_ 
+
+     _How do we set up an ssh-agent to work with pass?_
+
+     
 
 Recall the OpenSSH private key passphrase-protection uses AES 128-bit.
 
@@ -371,7 +381,7 @@ The next key we want to check-in is the AWS API acess key
 
 ## Automated Initialization
 
-Things get much simpler once the first time initialization has been done.
+Things will be simpler once the first time initialization has been done.
 
 You should have copied the gpg secret keys and know your GPG Passphrase.
 
@@ -504,6 +514,65 @@ pull from the vault
 
 
 
+
+
+───────────────────────────────────────────────────────────────────────
+# Rotation
+───────────────────────────────────────────────────────────────────────
+
+The main idea here is to sharing a central password vault with system operators.
+
+For this to work, a chosen standard unix account would also share a GPG keyring.
+
+Using individual keyrings and vaults would be more secure, but much less convenient.
+
+Aegis-vault will work either way, so long as you have 1 keyring per password-store.
+
+.
+
+Now ideally both of these will checked-into a private git repositgory somewhere.
+
+In the examples below we are assuming a vault shared with a handful of operators.
+
+If a shared vault is used, it would be wise to enact a passphrase rotation policy.
+
+.
+
+Now distributing a new rotated keyring and vault should be as easy as a git pull,
+
+and sharing the new passphrase for gpg keyring and the vault in a side channel.
+
+.
+
+Please note that individual secrets within the can also be changed or rotated,
+
+but care must also be taken to not lock-out and brick live systems by mistake.
+
+You should never both change a secret and rotate the passphrase at the same time.
+
+.
+
+The safest way is for systems to be rotated, restarted, and rolled-out in synchrony,
+
+ie via a provisioner or orchestrator (vagarnt, puppet, kubernetes, terraform, etc).
+
+.
+
+The rotation strategy is left up to you.
+
+For example, note git and ssh allow us to configure multiple authorized public keys.
+
+one strategy could be to temporarily expose the old SSH private key for the rotation.
+
+Think of it as a one-time OTP key, it should only remain exposed for the rotation.
+
+.
+
+_TODO_
+
+    _formalise this_ 
+
+
 ───────────────────────────────────────────────────────────────────────
 # Appendix
 ───────────────────────────────────────────────────────────────────────
@@ -511,47 +580,47 @@ pull from the vault
 
 pass password-store:
   
-  see https://www.passwordstore.org/
-
-  see https://git.zx2c4.com/password-store/
+      see https://www.passwordstore.org/
+    
+      see https://git.zx2c4.com/password-store/
 
 
 pass file extension
 
-  see https://github.com/lukrop/pass-file
+      see https://github.com/lukrop/pass-file
 
 
 sshpass(1) unix command
 
-  _this sshpas(1) is a unix command - not the same as the sshpass(2) expect script _
+      _this sshpas(1) is a unix command - not the same as the sshpass(2) expect script _
+        
+      see https://linux.die.net/man/1/sshpass
     
-  see https://linux.die.net/man/1/sshpass
-
-  see https://www.redhat.com/en/blog/ssh-automation-sshpass
-
-  see https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
-
+      see https://www.redhat.com/en/blog/ssh-automation-sshpass
+    
+      see https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
+    
 
 sshpass(2) expect script
   
-  _this sshpass(2) is an expect script - not the same as the sshpas(1) unix command_
-  
-  see https://thomasbroadley.com/blog/unlocking-ssh-keys-using-pass/
+      _this sshpass(2) is an expect script - not the same as the sshpas(1) unix command_
+      
+      see https://thomasbroadley.com/blog/unlocking-ssh-keys-using-pass/
 
 
 pass with gpg git
 
-  see https://medium.com/@chasinglogic/the-definitive-guide-to-password-store-c337a8f023a1
+      see [https://medium.com/@chasinglogic/the-definitive-guide-to-password-store-c337a8f023a1]
 
 
 pass with ssh agent
 
-  see https://medium.com/50ld/aws-setup-ssh-agent-forwarding-to-ec2-instances-on-windows-57b94d22c5f4
+      see https://medium.com/50ld/aws-setup-ssh-agent-forwarding-to-ec2-instances-on-windows-57b94d22c5f4
  
 
 ssh-key hardening
 
-  see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
+      see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 
  
 ═══════════════════════════════════════════════════════════════════════
