@@ -345,16 +345,16 @@ remove the ssh private key
 
 _TODO_ 
 
-    _use pass-file to store the ssh file with headers and footers_
+    _use pass-file to store the ssh file with/without headers and footers?_
 
-    _modify the extension it to strip the headers and footers with an option_
+    _modify the extension to strip ssh headers and footers with an option?_
 
 
 * Git
 
 configure your git server account and your git vault repo.
 
-for an external git this is typically done in a browesr.
+for an external git, this is typically done in a browser.
 
 
 copy your ssh key as your git ssh key
@@ -372,7 +372,7 @@ add your git ssh key into the vault
 
 * AWS
 
-The next key we want to check-in is the AWS API acess key
+The next key we want to check-in is the AWS API access key
  
     pass insert aws/aws_user  
 
@@ -383,7 +383,7 @@ The next key we want to check-in is the AWS API acess key
 
 Things will be simpler once the first time initialization has been done.
 
-You should have copied the gpg secret keys and know your GPG Passphrase.
+You should have copied the gpg secret keys and know your gpg passphrase.
 
 You should be on a new machine already holding the id_rsa.pub ssh pubkey.
 
@@ -520,11 +520,11 @@ pull from the vault
 # Rotation
 ───────────────────────────────────────────────────────────────────────
 
-The main idea here is to sharing a central password vault with system operators.
+The main idea here is to share a central password vault with all system operators.
 
 For this to work, a chosen standard unix account would also share a GPG keyring.
 
-Using individual keyrings and vaults would be more secure, but much less convenient.
+Using individual keyrings and vaults would be more secure but much less convenient.
 
 Aegis-vault will work either way, so long as you have 1 keyring per password-store.
 
