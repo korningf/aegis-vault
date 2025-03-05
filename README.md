@@ -422,7 +422,7 @@ this will allow us to track changes and load the vault in other systems.
 ## Cloud Infrastructure (AWS)
 ───────────────────────────────────────────────────────────────────────
 
-We're assuming here that the intent is to do Cloud Opps and Dev Ops.
+We're assuming here that the intent is to do Cloud Ops and Dev Ops.
 
 We further assume that one has an IAM account and an API Access Key.
 
