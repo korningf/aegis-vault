@@ -150,7 +150,6 @@ Note the Git repository url and relative repo path
     git_repo=aegis-vault
     git_repo_url=git@${git_server}/${git_user}/${git_repo}.git
 
-
     git_repo_url=git@github.com/korningf/aegis-vault.git
 
   
@@ -202,7 +201,7 @@ Create a master gpg keyring - this will be bound to your email identity.
 
     $ gpg --gen-key"
 
-The recommnded settings:
+The recommended settings:
 
     key kind:      1 (RSA)
     key size:      4096
