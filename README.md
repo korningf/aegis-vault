@@ -519,17 +519,17 @@ pull from the vault
 # Rotation
 ───────────────────────────────────────────────────────────────────────
 
-The main idea here is to share a central password vault with all system operators.
+The main idea here is to share a central password vault with a handful of operators.
 
-For this to work, a chosen standard unix account would also share a GPG keyring.
+For this to work, a chosen technical unix account would also share the gpg keyring.
 
-Using individual keyrings and vaults would be more secure but much less convenient.
+It would be more secure to use individual keyrings and vaults, but less convenient.
 
 Aegis-vault will work either way, so long as you have 1 keyring per password-store.
 
 .
 
-Now ideally both of these will checked-into a private git repositgory somewhere.
+Now ideally both of these will checked-into a private git repository somewhere.
 
 In the examples below we are assuming a vault shared with a handful of operators.
 
