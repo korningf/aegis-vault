@@ -39,6 +39,9 @@ It does not rely on a UI, and once configured can be fully scripted and automate
 It only depends on base tools: ssh, git, tree, gnupg, pass, sshpass, aws-cli, etc.
 
 
+[TOC]
+
+
 
 ───────────────────────────────────────────────────────────────────────
 # Installation
