@@ -567,9 +567,45 @@ Think of it as a one-time OTP key, it should only remain exposed for the rotatio
 
 .
 
+* GPG Sub Keys
+
+GPG and PGP already provide a mechanism for key expiry and for subordinate keys.
+
+An excellent way to manage key vault coudl be to encrypt it with a expring subkey.
+
+GPG 2.0 Subkeys are still quite complicated - this will require some investigation.
+
+  
 _TODO_
 
-    _formalise this_ 
+    _look at GPG subkeys, expiry, rotation_
+    
+    _figure out how to use it with pass_ 
+
+    _formalise this_
+
+
+
+* Override the default key used by Pass and GPG
+
+Investigate the following:
+
+
+(1) a Pass environment variable allows to forward Pass options to GPG. 
+
+    one can oevvride the private key id (its short fingerprint hash)
+
+
+        export PASSWORD_STORE_GPG_OPTS="--default-key 32089A9550EAF4BB"
+
+(2) Pass stores this private key_id (fingerprint) in its own database,
+
+    in the form of a .gpg-id a control-file in the ~/.passsword-store
+
+
+        ~/.pasword-store/.gpg-id
+
+    
 
 
 ───────────────────────────────────────────────────────────────────────
@@ -621,7 +657,19 @@ ssh-key hardening
 
       see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 
- 
+
+gpg subkeys
+
+      see https://wiki.debian.org/Subkeys?action=show&redirect=subkeys
+
+      see https://superuser.com/questions/466396/how-to-manage-gpg-keys-across-multiple-systems
+
+      see https://security.stackexchange.com/questions/136707/use-specific-subkeys-without-master-key-on-different-device-using-gpg
+
+      see https://www.reddit.com/r/linuxquestions/comments/18zhtvn/passwordstore_and_gpg_keys/
+      
+      
+
 ═══════════════════════════════════════════════════════════════════════
 # (c) Francis Korning 2025.
 ═══════════════════════════════════════════════════════════════════════
