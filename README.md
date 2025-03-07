@@ -404,6 +404,103 @@ _TODO_
     
 
 
+
+
+
+
+───────────────────────────────────────────────────────────────────────
+# Rotation
+───────────────────────────────────────────────────────────────────────
+
+The main idea here is to share a central password vault with a handful of operators.
+
+For this to work, a chosen technical unix account would also share the gpg keyring.
+
+It would be more secure to use individual keyrings and vaults, but less convenient.
+
+Aegis-vault will work either way, so long as you have 1 keyring per password-store.
+
+.
+
+Now ideally both of these will checked-into a private git repository somewhere.
+
+In the examples below we are assuming a vault shared with a handful of operators.
+
+If a shared vault is used, it would be wise to enact a passphrase rotation policy.
+
+.
+
+Now distributing a new rotated keyring and vault should be as easy as a git pull,
+
+and sharing the new passphrase for gpg keyring and the vault in a side channel.
+
+.
+
+Please note that individual secrets within the can also be changed or rotated,
+
+but care must also be taken to not lock-out and brick live systems by mistake.
+
+You should never both change a secret and rotate the passphrase at the same time.
+
+.
+
+The safest way is for systems to be rotated, restarted, and rolled-out in synchrony,
+
+ie via a provisioner or orchestrator (vagarnt, puppet, kubernetes, terraform, etc).
+
+.
+
+The rotation strategy is left up to you.
+
+For example, note git and ssh allow us to configure multiple authorized public keys.
+
+one strategy could be to temporarily expose the old SSH private key for the rotation.
+
+Think of it as a one-time OTP key, it should only remain exposed for the rotation.
+
+.
+
+* GPG Sub Keys
+
+GPG and PGP already provide a mechanism for key expiry and for subordinate keys.
+
+An excellent way to manage key vault coudl be to encrypt it with a expring subkey.
+
+GPG 2.0 Subkeys are still quite complicated - this will require some investigation.
+
+  
+_TODO_
+
+    _look at GPG subkeys, expiry, rotation_
+    
+    _figure out how to use it with pass_ 
+
+    _formalise this_
+
+
+
+* Override the default key used by Pass and GPG
+
+Investigate the following:
+
+
+(1) a Pass environment variable allows to forward Pass options to GPG. 
+
+    one can oevvride the private key id (its short fingerprint hash)
+
+
+        export PASSWORD_STORE_GPG_OPTS="--default-key 32089A9550EAF4BB"
+
+(2) Pass stores this private key_id (fingerprint) in its own database,
+
+    in the form of a .gpg-id a control-file in the ~/.passsword-store
+
+
+        ~/.pasword-store/.gpg-id
+
+    
+
+
 ───────────────────────────────────────────────────────────────────────
 # Configuration
 ───────────────────────────────────────────────────────────────────────
@@ -515,102 +612,6 @@ pull from the vault
 
 
 
-
-
-
-───────────────────────────────────────────────────────────────────────
-# Rotation
-───────────────────────────────────────────────────────────────────────
-
-The main idea here is to share a central password vault with a handful of operators.
-
-For this to work, a chosen technical unix account would also share the gpg keyring.
-
-It would be more secure to use individual keyrings and vaults, but less convenient.
-
-Aegis-vault will work either way, so long as you have 1 keyring per password-store.
-
-.
-
-Now ideally both of these will checked-into a private git repository somewhere.
-
-In the examples below we are assuming a vault shared with a handful of operators.
-
-If a shared vault is used, it would be wise to enact a passphrase rotation policy.
-
-.
-
-Now distributing a new rotated keyring and vault should be as easy as a git pull,
-
-and sharing the new passphrase for gpg keyring and the vault in a side channel.
-
-.
-
-Please note that individual secrets within the can also be changed or rotated,
-
-but care must also be taken to not lock-out and brick live systems by mistake.
-
-You should never both change a secret and rotate the passphrase at the same time.
-
-.
-
-The safest way is for systems to be rotated, restarted, and rolled-out in synchrony,
-
-ie via a provisioner or orchestrator (vagarnt, puppet, kubernetes, terraform, etc).
-
-.
-
-The rotation strategy is left up to you.
-
-For example, note git and ssh allow us to configure multiple authorized public keys.
-
-one strategy could be to temporarily expose the old SSH private key for the rotation.
-
-Think of it as a one-time OTP key, it should only remain exposed for the rotation.
-
-.
-
-* GPG Sub Keys
-
-GPG and PGP already provide a mechanism for key expiry and for subordinate keys.
-
-An excellent way to manage key vault coudl be to encrypt it with a expring subkey.
-
-GPG 2.0 Subkeys are still quite complicated - this will require some investigation.
-
-  
-_TODO_
-
-    _look at GPG subkeys, expiry, rotation_
-    
-    _figure out how to use it with pass_ 
-
-    _formalise this_
-
-
-
-* Override the default key used by Pass and GPG
-
-Investigate the following:
-
-
-(1) a Pass environment variable allows to forward Pass options to GPG. 
-
-    one can oevvride the private key id (its short fingerprint hash)
-
-
-        export PASSWORD_STORE_GPG_OPTS="--default-key 32089A9550EAF4BB"
-
-(2) Pass stores this private key_id (fingerprint) in its own database,
-
-    in the form of a .gpg-id a control-file in the ~/.passsword-store
-
-
-        ~/.pasword-store/.gpg-id
-
-    
-
-
 ───────────────────────────────────────────────────────────────────────
 # Appendix
 ───────────────────────────────────────────────────────────────────────
@@ -622,10 +623,12 @@ pass password-store:
     
       see https://git.zx2c4.com/password-store/
 
+ 
 
 pass file extension
 
       see https://github.com/lukrop/pass-file
+
 
 
 sshpass(1) unix command
@@ -651,16 +654,6 @@ pass with gpg git
       see [https://medium.com/@chasinglogic/the-definitive-guide-to-password-store-c337a8f023a1]
 
 
-pass with ssh agent
-
-      see https://medium.com/50ld/aws-setup-ssh-agent-forwarding-to-ec2-instances-on-windows-57b94d22c5f4
- 
-
-ssh-key hardening
-
-      see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
-
-
 gpg subkeys
 
       see https://wiki.debian.org/Subkeys?action=show&redirect=subkeys
@@ -670,7 +663,38 @@ gpg subkeys
       see https://security.stackexchange.com/questions/136707/use-specific-subkeys-without-master-key-on-different-device-using-gpg
 
       see https://www.reddit.com/r/linuxquestions/comments/18zhtvn/passwordstore_and_gpg_keys/
+
+
+gpg-agent
+
+      see https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
+
+      see https://unix.stackexchange.com/questions/188668/how-does-gpg-agent-work
+
+
+pass with gpg-agent
+
+      see https://forums.funtoo.org/topic/863-pass-with-gpg-agent/
+
+      see https://thonkpeasant.xyz/guides/other/pass.html
+
+
+ssh-agent
+
+      see https://docs.github.com/en/authentication/connecting-to-github-with-ssh/using-ssh-agent-forwarding
+
+      see https://unix.stackexchange.com/questions/740871/ssh-agent-how-it-works
       
+
+pass with ssh agent
+
+      see https://medium.com/50ld/aws-setup-ssh-agent-forwarding-to-ec2-instances-on-windows-57b94d22c5f4
+ 
+
+ssh-key hardening
+
+      see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
+
       
 
 ═══════════════════════════════════════════════════════════════════════
