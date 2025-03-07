@@ -242,6 +242,8 @@ generate the password-store
     pass init .password-store ${gpg_id}
   
 
+
+
 * SSH
 
 Now chances are we have an ssh key already if this is a virtual machine.
@@ -261,8 +263,6 @@ which we can then add to our Git repo (without screwing up AWS access)
 .
 
 At minimum we will need to integrate pass and ssh for git repo access.
-
-We will probably want to use SSH-Agents, and we will address this later.
 
 
 
@@ -296,11 +296,6 @@ _TODO_
 
            _overkill, not sure this adds anything except complexity_ 
 
-_TODO_ 
-
-     _How do we set up an ssh-agent to work with pass?_
-
-     
 
 Recall the OpenSSH private key passphrase-protection uses AES 128-bit.
 
@@ -381,6 +376,7 @@ The next key we want to check-in is the AWS API access key
 
 
 
+
 ## Automated Initialization
 
 Things will be simpler once the first time initialization has been done.
@@ -402,10 +398,6 @@ _TODO_
 
     aegis.sh
     
-
-
-
-
 
 
 ───────────────────────────────────────────────────────────────────────
@@ -458,7 +450,10 @@ one strategy could be to temporarily expose the old SSH private key for the rota
 
 Think of it as a one-time OTP key, it should only remain exposed for the rotation.
 
-.
+
+───────────────────────────────────────────────────────────────────────
+# SubKeys
+───────────────────────────────────────────────────────────────────────
 
 * GPG Sub Keys
 
@@ -495,8 +490,74 @@ Investigate the following:
 
     in the form of a .gpg-id a control-file in the ~/.passsword-store
 
-
         ~/.pasword-store/.gpg-id
+
+
+* SSH Sub Keys
+
+SSH already supports the same idea, in the form of signed RSA .pem keys.
+
+RSA .PEM keys can actually be signed RSA certificates, so signed subkeys.
+
+Certificates for now are of scope - we will add this later
+
+
+  
+───────────────────────────────────────────────────────────────────────
+# Certificates
+───────────────────────────────────────────────────────────────────────
+
+_TODO_
+
+        _install openssl and root CA_
+        
+            gnutls
+            openssl
+
+        _formalize a workflow for secure certificates_ 
+
+        _formalize a workflow for signed ssh RSA .pem subkeys_ 
+
+
+
+───────────────────────────────────────────────────────────────────────
+# Agent-Forwarding
+───────────────────────────────────────────────────────────────────────
+
+This is used for master secrets (GPG passphrase, SSH passphrase, SSH password).
+
+The main idea is to require a secret be entered once and only once a session.
+
+A corolloray is that master secrets do not have to be exposed on every machine.
+
+.
+
+One authenticates once (with a GPG passphrase, or SSH passphrase, or password).
+
+An agent daemon on the machine keeps these master secrets in ephemeral memory. 
+
+The agent can then forward these credentials to another call during a session.
+
+This allows to chain an SSO authentication and hop along from system to system.
+
+Crucially, without having to store or expose the SSH private key or GPG keyring.
+
+
+
+* GPG-Agent
+
+  
+* SSH-Agent
+  
+We will probably want to use SSH-Agents, and we will address this later.
+
+
+_TODO_ 
+
+     _How do we set up an ssh-agent to work with pass?_
+
+     
+
 
     
 
