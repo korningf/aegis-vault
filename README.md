@@ -51,13 +51,17 @@ Ensure you have installed the prerequisistes (ssh, git, tree, gnupg, pass, sshpa
 
 ## cygwin
 
+On cygwin, `gnupg` and is v1.x,  `gnupg2` is 2.x (we need 2.x for gpg-agent).
+
+
 ```
 apt-cyg install git
 apt-cyg install tree
 apt-cyg install pass
-apt-cyg install gnupg
+apt-cyg install gnupg2
 apt-cyg install sshpass
 ```
+
 
 ## ubuntu (22 LTS jammy)
 
@@ -92,7 +96,20 @@ pass extensions
 ```
 
   
+───────────────────────────────────────────────────────────────────────
+# Delegation
+───────────────────────────────────────────────────────────────────────
 
+Thes below assumes a single vault and passphrase shared with key operators.
+
+Git submodules can be used for multiple individual .passwor-store vaults.
+
+_TODO_  
+
+	_formalize this later_ 
+ 
+ 	_get it working for a single store first_
+  
 ───────────────────────────────────────────────────────────────────────
 # Preparation
 ───────────────────────────────────────────────────────────────────────
@@ -678,7 +695,14 @@ pull from the vault
 ───────────────────────────────────────────────────────────────────────
 
 
-pass password-store:
+git sub-modules
+
+      see https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+      see https://www.pluralsight.com/resources/blog/guides/using-git-submodules-to-reference-one-git-repository-from-another
+
+
+pass password-store
   
       see https://www.passwordstore.org/
     
