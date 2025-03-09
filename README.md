@@ -561,8 +561,6 @@ Crucially, without having to store or expose the SSH private key or GPG keyring.
 
 
 
-* GPG-Agent
-
   
 * SSH-Agent
   
@@ -573,8 +571,11 @@ _TODO_
 
      _How do we set up an ssh-agent to work with pass?_
 
-     
 
+* GPG-Agent
+
+
+	https://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 
     
 
@@ -755,6 +756,8 @@ gpg-agent
       see https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
 
       see https://unix.stackexchange.com/questions/188668/how-does-gpg-agent-work
+
+      see https://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 
 
 pass with gpg-agent
