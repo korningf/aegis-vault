@@ -49,6 +49,18 @@ It only depends on base tools: ssh, git, tree, gnupg, pass, sshpass, aws-cli, et
 
 Ensure you have installed the prerequisistes (ssh, git, tree, gnupg, pass, sshpass).
 
+## msys
+
+```
+pacman -Syuq git
+pacman -Syuq tree
+pacman -Syuq pass
+pacman -Syuq gnupg
+pacman -Syuq sshpass
+```
+
+
+
 ## cygwin
 
 On cygwin, `gnupg` and is v1.x,  `gnupg2` is 2.x (we need 2.x for gpg-agent).
