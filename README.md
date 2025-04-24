@@ -97,15 +97,67 @@ yum install sshpass
 
 
 
-pass extensions
+# Extensions
 
+
+## pass-file
+
+Pass-file allows us to upload files as secrets, useful for X.509 certs, SSH key pairs, etc.
+
+	https://github.com/dvogt23/pass-file
+
+pass-file is just a bash script so we can place it directly in the pass extensions directory.
+
+install via bash
+
+```bash
+mkdir -p /usr/lib/password-store/extensions
+cd /usr/lib/password-store/extensions
+
+curl https://raw.githubusercontent.com/lukrop/pass-file/refs/heads/master/file.bash > file.bash
+chmod a+x *.bash
+cd
 ```
-  mkdir -p /usr/lib/password-store/extensions
-  cd /usr/lib/password-store/extensions
-  curl https://raw.githubusercontent.com/lukrop/pass-file/refs/heads/master/file.bash > file.bash
-  chmod a+x *.bash
-  cd
+
+## pass-update
+
+Pass Update allows command-line batch update of passwords including globs and wildcard patterns.
+
+For exmaple one can rotate a batch of similar passwords with a new template 
+
+    https://github.com/roddhjav/pass-update
+
+install via git and Make
+
+```bash
+git clone https://github.com/roddhjav/pass-update/
+cd pass-update
+sudo make install  # For OSX: make install PREFIX=/usr/local
+```    
+
+
+
+## pass-import
+
+Fortunately, Pass Password-Store has a Pass-import and Pass-Export Plugin that does it all.
+
+This means we can export from Pass to KeePass.xml and from there into PasswordManager.
+
+And we can reverse it: we export from Pass to KeePass, then import to PassswordManager.
+
+  https://github.com/roddhjav/pass-import/
+
+Pass-import requires python
+
+install via git and python
+
+```bash
+git clone https://github.com/roddhjav/pass-import/
+cd pass-import
+python3 setup.py install
 ```
+
+
 
   
 ───────────────────────────────────────────────────────────────────────
