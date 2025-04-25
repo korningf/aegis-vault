@@ -755,6 +755,8 @@ pull from the vault
 
 
 
+
+
 ───────────────────────────────────────────────────────────────────────
 # Appendix
 ───────────────────────────────────────────────────────────────────────
@@ -847,7 +849,17 @@ ssh-key hardening
 
       see https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 
-      
+
+passsh (nothing to do with password-store - an alternative)
+
+	see https://github.com/clarkwang/passh
+
+
+pass + ssh via a short bash shell
+
+	see https://stackoverflow.com/questions/24454037/pass-a-password-to-ssh-in-pure-bash
+
+
 
 ═══════════════════════════════════════════════════════════════════════
 # (c) Francis Korning 2025.
