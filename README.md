@@ -860,8 +860,16 @@ pass + ssh via a short bash shell
 	see https://stackoverflow.com/questions/24454037/pass-a-password-to-ssh-in-pure-bash
 
 
+═══════════════════════════════════════════════════════════════════════
+# Attribution
+═══════════════════════════════════════════════════════════════════════
+
+*Stephane Korning* (stefuss@yahoo.com) for the original idea and impetus.
+
+
 
 ═══════════════════════════════════════════════════════════════════════
-# (c) Francis Korning 2025.
+# License
 ═══════════════════════════════════════════════════════════════════════
 
+(c) Francis Korning 2025.
