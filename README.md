@@ -166,7 +166,7 @@ python3 setup.py install
 
 Thes below assumes a single vault and passphrase shared with key operators.
 
-Git submodules can be used for multiple individual .passwor-store vaults.
+Git submodules can be used for multiple individual .password-store vaults.
 
 _TODO_  
 
