@@ -283,7 +283,7 @@ Select a primary email identity, ie the one linked to your git account.
 
 Create a master gpg keyring - this will be bound to your email identity.
 
-    $ gpg --gen-key"
+    $ gpg --full-generate-key"
 
 The recommended settings:
 
